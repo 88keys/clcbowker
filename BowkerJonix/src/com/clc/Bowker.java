@@ -66,10 +66,13 @@ public class Bowker
 			JonixTabDelimitedExporter<BasicHeader, BowkerProduct> exporter = createBasicTabDelimitedExporter(out, null);
 			
 			 exporter.setColumns((JonixColumn<BowkerProduct>[]) new JonixColumn<?>[]
-		                { BowkerColumns.A001s, 
-		        	BowkerColumns.ProductIdentifiers, 
-//		        	BowkerColumns.BarCodes, 
-//		        	BowkerColumns.ProductForms, 
+		                { BowkerColumns.MarketItemRecordNumber,
+		                BowkerColumns.NotificationType,
+		                BowkerColumns.RecordSourceType,
+		                BowkerColumns.RecordSourceName,
+		        	BowkerColumns.ProductIdentifiers,
+		        	BowkerColumns.BarCodes,
+		        	BowkerColumns.ProductForms});
 //		        	BowkerColumns.ProductFormDetails, 
 //		        	BasicColumn.ISBN13, 
 //		        	BasicColumn.Title, 
@@ -91,7 +94,7 @@ public class Bowker
 //		        	BasicColumn.SalesBannedIn, 
 //		        	BasicColumn.Description, 
 //		        	BasicColumn.ShortDescription});
-		                });
+//		                });
 			exporter.scanFolder(onixVersion, inputFile, ".xml", "ISO-8859-1");
 		}
 		catch (Exception e)
@@ -99,37 +102,6 @@ public class Bowker
 			e.printStackTrace();
 		}
 		
-//		JonixTabDelimitedExporter<BasicHeader, BowkerProduct> exporter = new JonixTabDelimitedExporter<BasicHeader, BowkerProduct>(new BowkerFactory());
-//        
-//        exporter.setColumns((JonixColumn<BowkerProduct>[]) new JonixColumn<?>[]
-//                { BowkerColumns.A001s, 
-//        	BowkerColumns.ProductIdentifiers, 
-//        	BowkerColumns.BarCodes, 
-//        	BowkerColumns.ProductForms, 
-//        	BowkerColumns.ProductFormDetails, 
-//        	BasicColumn.ISBN13, 
-//        	BasicColumn.Title, 
-//        	BasicColumn.SeriesTitle, 
-//        	BowkerColumns.WorkIdentifiers,
-//        	BasicColumn.Author, 
-//        	BasicColumn.Editor, 
-//        	BasicColumn.Language, 
-//        	BasicColumn.NumOfPages, 
-//        	BasicColumn.Publisher, 
-//        	BasicColumn.PublicationDate, 
-//        	BowkerColumns.EditionTypeCodes,
-//        	BasicColumn.Dewey, 
-//        	BasicColumn.BISAC, 
-//        	BasicColumn.BIC, 
-//        	BasicColumn.Keywords, 
-//        	BasicColumn.PriceAmount, 
-//        	BasicColumn.SalesAllowedIn, 
-//        	BasicColumn.SalesBannedIn, 
-//        	BasicColumn.Description, 
-//        	BasicColumn.ShortDescription});
-//		
-//        exporter.scanFile(JonixPackages.v21_Short, "C:\\Users\\Jonner\\Documents\\jonix\\onixfiles\\ConnEdu_USA-20151212_1.xml", "ISO-8859-1");
-
 	}
 	
 	public static JonixTabDelimitedExporter<BasicHeader, BowkerProduct> createBasicTabDelimitedExporter(PrintStream out, PrintStream log)
