@@ -299,13 +299,13 @@ public enum BowkerColumns implements JonixColumn<BowkerProduct>
 
 		@Override
 		public int getRepetitions() {
-			return 2;
+			return 1;
 		}
 
 		@Override
 		public String[] getSubColumnNames() {
 			return new String[]
-                    { "ProductFormCode", "ProductFormName" };
+                    { "ProductFormCode" };
 		}
 
 		@Override
@@ -315,46 +315,46 @@ public enum BowkerColumns implements JonixColumn<BowkerProduct>
             for (ProductForm productForm : product.productForm)
             {
                     fieldData[pos + 0] = productForm.productFormCode;
-                    if(null != productForm.productFormName)
-                    {
-                    	fieldData[pos + 1] = productForm.productFormName.name();
-                    }
+//                    if(null != productForm.productFormName)
+//                    {
+//                    	fieldData[pos + 1] = productForm.productFormName.name();
+//                    }
                     
-                    if ((pos += 2) == fieldData.length)
+                    if ((pos += 1) == fieldData.length)
+                            break;
+            }
+            return pos > 0;
+		}
+		
+	},
+	ProductFormDetails
+	{
+
+		@Override
+		public int getRepetitions() {
+			return 1;
+		}
+
+		@Override
+		public String[] getSubColumnNames() {
+			return new String[]
+                    { "ProductFormDetail" };
+		}
+
+		@Override
+		public boolean extractTo(String[] fieldData, BowkerProduct product) {
+			int pos = 0;
+            for (ProductFormDetail productForm : product.productFormDetails)
+            {
+                    fieldData[pos + 0] = productForm.productFormDetailCode;
+                    
+                    if ((pos += 1) == fieldData.length)
                             break;
             }
             return pos > 0;
 		}
 		
 	};
-//	ProductFormDetails
-//	{
-//
-//		@Override
-//		public int getRepetitions() {
-//			return 1;
-//		}
-//
-//		@Override
-//		public String[] getSubColumnNames() {
-//			return new String[]
-//                    { "ProductFormDetail" };
-//		}
-//
-//		@Override
-//		public boolean extractTo(String[] fieldData, BowkerProduct product) {
-//			int pos = 0;
-//            for (ProductFormDetail productForm : product.productFormDetails)
-//            {
-//                    fieldData[pos + 0] = productForm.productFormDetailCode;
-//                    
-//                    if ((pos += 1) == fieldData.length)
-//                            break;
-//            }
-//            return pos > 0;
-//		}
-//		
-//	},
 //	WorkIdentifiers
 //	{
 //

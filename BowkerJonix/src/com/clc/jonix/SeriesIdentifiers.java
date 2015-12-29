@@ -23,13 +23,13 @@ public class SeriesIdentifiers extends JonixComposite<SeriesIdentifiers.SeriesId
 		 * 
 		 */
 		private static final long serialVersionUID = 7072151630413572949L;
-		public final String b273;
+		public final String seriesIDType;
 		public final String b233;
 		public final String b244;
 		
-		public SeriesIdentifier (String b273, String b233, String b244)
+		public SeriesIdentifier (String seriesIDType, String b233, String b244)
 		{
-			this.b273 = b273;
+			this.seriesIDType = seriesIDType;
 			this.b233 = b233;
 			this.b244 = b244;
 		}
@@ -39,11 +39,11 @@ public class SeriesIdentifiers extends JonixComposite<SeriesIdentifiers.SeriesId
 	public JonixConsumer consume(Object o, Object parent, Object grandParent, JonixResolver resolver) {
 		if (resolver.onixTypeOf(o) == ONIX.SeriesIdentifier)
         {
-			String b273 = (String) JonixUtils.getProperty(o, resolver.onixPropOf(ONIX.SeriesIDType), "value");
+			String seriesIDType = (String) JonixUtils.getProperty(o, resolver.onixPropOf(ONIX.SeriesIDType), "value");
             String b233 = (String) JonixUtils.getProperty(o, resolver.onixPropOf(ONIX.IDTypeName), "value");
             String b244 = (String) JonixUtils.getProperty(o, resolver.onixPropOf(ONIX.IDValue), "value");
 
-            add(new SeriesIdentifier(b273, b233, b244));
+            add(new SeriesIdentifier(seriesIDType, b233, b244));
             return this;
 				
         }

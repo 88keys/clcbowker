@@ -1,6 +1,7 @@
 package com.clc;
 
 import org.jonix.basic.BasicProduct;
+import org.jonix.composite.Serieses;
 import org.jonix.resolve.JonixResolver;
 
 import com.clc.jonix.MarketItemRecordNumbers;
@@ -31,11 +32,13 @@ public class BowkerProduct extends BasicProduct
 	//public final ProductIdentifiers prodIdent = new ProductIdentifiers();
 	public final Barcodes barCode = new Barcodes();
 	public final ProductForms productForm = new ProductForms();
+	public final ProductFormDetails productFormDetails = new ProductFormDetails();
+	public final Serieses serieses = new Serieses();
 //	public final B221s b221 = new B221s();
 //	public final B244s b244 = new B244s();
 
 
-	//public final ProductFormDetails productFormDetails = new ProductFormDetails();
+
 	//public final SeriesIdentifiers seriesIdentifiers = new SeriesIdentifiers();
 	//public final WorkIdentifiers workIdentifiers = new WorkIdentifiers();
 	//public final EditionTypeCodes editionTypeCodes = new EditionTypeCodes();

@@ -72,11 +72,11 @@ public class Bowker
 		                BowkerColumns.RecordSourceName,
 		        	BowkerColumns.ProductIdentifiers,
 		        	BowkerColumns.BarCodes,
-		        	BowkerColumns.ProductForms});
-//		        	BowkerColumns.ProductFormDetails, 
+		        	BowkerColumns.ProductForms,
+		        	BowkerColumns.ProductFormDetails,
 //		        	BasicColumn.ISBN13, 
-//		        	BasicColumn.Title, 
-//		        	BasicColumn.SeriesTitle, 
+		        	BasicColumn.SeriesTitle,
+		        	BasicColumn.Title}); 
 //		        	BowkerColumns.WorkIdentifiers,
 //		        	BasicColumn.Author, 
 //		        	BasicColumn.Editor, 
