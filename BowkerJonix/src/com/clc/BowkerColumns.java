@@ -4,6 +4,8 @@ import org.jonix.JonixColumn;
 import org.jonix.basic.BasicProduct;
 import org.jonix.codelist.ProductIdTypes;
 import org.jonix.composite.ProductIdentifiers.ProductIdentifier;
+import org.jonix.composite.Titles;
+import org.jonix.composite.Titles.Title;
 
 import com.clc.jonix.MarketItemRecordNumbers.MarketItemRecordNumber;
 import com.clc.jonix.Barcodes.Barcode;
@@ -11,6 +13,7 @@ import com.clc.jonix.EditionTypeCodes.EditionTypeCode;
 import com.clc.jonix.ProductFormDetails.ProductFormDetail;
 import com.clc.jonix.ProductForms.ProductForm;
 import com.clc.jonix.SeriesIdentifiers.SeriesIdentifier;
+import com.clc.jonix.Serieses.Series;
 import com.clc.jonix.WorkIdentifiers.WorkIdentifier;
 import com.clc.jonix.RecordSourceNames.RecordSourceName;
 
@@ -350,6 +353,41 @@ public enum BowkerColumns implements JonixColumn<BowkerProduct>
                     
                     if ((pos += 1) == fieldData.length)
                             break;
+            }
+            return pos > 0;
+		}
+		
+	},
+	Serieses
+	{
+
+		@Override
+		public int getRepetitions() {
+			return 1;
+		}
+
+		@Override
+		public String[] getSubColumnNames() {
+			return new String[]
+                    { "SeriesTitle", "SeriesISSN", "NumberWithinSeries" };
+		}
+
+		@Override
+		public boolean extractTo(String[] fieldData, BowkerProduct product) {
+			int pos = 0;
+            for (Series series : product.serieses)
+            {
+            	Titles titles = series.titles;
+            	Title title = titles.get(0);
+            	
+            	String titleText = title.titleText;
+            	fieldData[pos + 0] = titleText;
+            	
+                
+                fieldData[pos + 1] = series.seriesISSN;
+                fieldData[pos +2] = series.numberWithinSeries;
+                if ((pos += 2) == fieldData.length)
+                    break;
             }
             return pos > 0;
 		}

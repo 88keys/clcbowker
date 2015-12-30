@@ -1,7 +1,6 @@
 package com.clc;
 
 import org.jonix.basic.BasicProduct;
-import org.jonix.composite.Serieses;
 import org.jonix.resolve.JonixResolver;
 
 import com.clc.jonix.MarketItemRecordNumbers;
@@ -14,6 +13,7 @@ import com.clc.jonix.ProductIdentifiers;
 import com.clc.jonix.RecordSourceNames;
 import com.clc.jonix.RecordSourceTypes;
 import com.clc.jonix.SeriesIdentifiers;
+import com.clc.jonix.Serieses;
 import com.clc.jonix.WorkIdentifiers;
 
 public class BowkerProduct extends BasicProduct

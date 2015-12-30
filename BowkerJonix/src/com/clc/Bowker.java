@@ -17,7 +17,7 @@ import org.jonix.export.JonixUniqueExporter;
 
 public class Bowker
 {
-
+	
 	public static void main(String[] args) 
 	{
 		// Temp variables For Testing Purposes.
@@ -75,7 +75,8 @@ public class Bowker
 		        	BowkerColumns.ProductForms,
 		        	BowkerColumns.ProductFormDetails,
 //		        	BasicColumn.ISBN13, 
-		        	BasicColumn.SeriesTitle,
+		        	BowkerColumns.Serieses,
+//		        	BasicColumn.SeriesTitle,
 		        	BasicColumn.Title}); 
 //		        	BowkerColumns.WorkIdentifiers,
 //		        	BasicColumn.Author, 
