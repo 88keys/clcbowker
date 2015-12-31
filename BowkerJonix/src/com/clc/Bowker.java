@@ -20,10 +20,15 @@ public class Bowker
 	
 	public static void main(String[] args) 
 	{
+		
+		args = new String[2];
+		
 		// Temp variables For Testing Purposes.
 		args[0] = "C:\\Users\\Jonner\\Documents\\jonix\\onixfiles\\ConnEdu_USA-20151212_1.xml";
+
 		args[1] = "bowkerTabDelFile.txt";
 		
+
 		if (args.length < 2 || args.length > 3)
 		{
 			System.out.println("Usage:");
@@ -77,18 +82,27 @@ public class Bowker
 //		        	BasicColumn.ISBN13, 
 		        	BowkerColumns.Serieses,
 //		        	BasicColumn.SeriesTitle,
-		        	BasicColumn.Title}); 
-//		        	BowkerColumns.WorkIdentifiers,
-//		        	BasicColumn.Author, 
+		        	BowkerColumns.EPubTypes,
+		        	BasicColumn.Title, 
+		        	BowkerColumns.WorkIdentifiers,
+		        	BowkerColumns.Author,
+		        	BowkerColumns.EditionTypeCodes,
+		        	BowkerColumns.EditionNumbers,
+		        	BasicColumn.Language,
+		        	BasicColumn.NumOfPages,
+		        	BowkerColumns.NumberOfIllustrations,
+		        	BasicColumn.BISAC,
+		        	BasicColumn.BIC,
+		        	BowkerColumns.PublisherBISACSubjectCode}); 
 //		        	BasicColumn.Editor, 
-//		        	BasicColumn.Language, 
-//		        	BasicColumn.NumOfPages, 
+
+
 //		        	BasicColumn.Publisher, 
 //		        	BasicColumn.PublicationDate, 
-//		        	BowkerColumns.EditionTypeCodes,
+
 //		        	BasicColumn.Dewey, 
-//		        	BasicColumn.BISAC, 
-//		        	BasicColumn.BIC, 
+ 
+
 //		        	BasicColumn.Keywords, 
 //		        	BasicColumn.PriceAmount, 
 //		        	BasicColumn.SalesAllowedIn, 

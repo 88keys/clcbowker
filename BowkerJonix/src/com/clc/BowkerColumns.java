@@ -1,21 +1,29 @@
 package com.clc;
 
+import java.util.List;
+
 import org.jonix.JonixColumn;
 import org.jonix.basic.BasicProduct;
+import org.jonix.codelist.ContributorRoles;
 import org.jonix.codelist.ProductIdTypes;
+import org.jonix.codelist.SubjectSchemeIds;
 import org.jonix.composite.ProductIdentifiers.ProductIdentifier;
+import org.jonix.composite.Subjects.Subject;
 import org.jonix.composite.Titles;
+import org.jonix.composite.Contributors.Contributor;
 import org.jonix.composite.Titles.Title;
 
 import com.clc.jonix.MarketItemRecordNumbers.MarketItemRecordNumber;
+import com.clc.jonix.NumberOfIllustrations.NumberOfIllustration;
 import com.clc.jonix.Barcodes.Barcode;
+import com.clc.jonix.EPubTypes.EPubType;
 import com.clc.jonix.EditionTypeCodes.EditionTypeCode;
 import com.clc.jonix.ProductFormDetails.ProductFormDetail;
 import com.clc.jonix.ProductForms.ProductForm;
-import com.clc.jonix.SeriesIdentifiers.SeriesIdentifier;
 import com.clc.jonix.Serieses.Series;
 import com.clc.jonix.WorkIdentifiers.WorkIdentifier;
 import com.clc.jonix.RecordSourceNames.RecordSourceName;
+import com.clc.jonix.EditionNumbers.EditionNumber;;
 
 public enum BowkerColumns implements JonixColumn<BowkerProduct>
 {
@@ -392,94 +400,186 @@ public enum BowkerColumns implements JonixColumn<BowkerProduct>
             return pos > 0;
 		}
 		
+	},
+	EPubTypes
+	{
+
+		@Override
+		public int getRepetitions() {
+			return 1;
+		}
+
+		@Override
+		public String[] getSubColumnNames() {
+			return new String[]
+                    { "EPubType" };
+		}
+
+		@Override
+		public boolean extractTo(String[] fieldData, BowkerProduct product) {
+			int pos = 0;
+            for (EPubType ePubType : product.ePubTypes)
+            {
+            	
+            	fieldData[pos + 0] = ePubType.ePubType;
+
+                if ((pos += 1) == fieldData.length)
+                    break;
+            }
+            return pos > 0;
+		}
+		
+	},
+	WorkIdentifiers
+	{
+
+		@Override
+		public int getRepetitions() {
+			return 1;
+		}
+
+		@Override
+		public String[] getSubColumnNames() 
+		{
+			return new String[]
+                    { "WorkIdType", "idTypeName", "idValue" };
+		}
+
+		@Override
+		public boolean extractTo(String[] fieldData, BowkerProduct product) {
+			int pos = 0;
+            for (WorkIdentifier workId : product.workIdentifiers)
+            {
+                    fieldData[pos + 0] = workId.workIdType.name();
+                    fieldData[pos + 1] = workId.idTypeName;
+                    fieldData[pos + 2] = workId.idValue;
+                    if ((pos += 3) == fieldData.length)
+                            break;
+            }
+            return pos > 0;
+		}
+		
+	},
+	Author
+	{
+		
+		@Override
+		public int getRepetitions() {
+			return 1;
+		}
+
+		@Override
+		public String[] getSubColumnNames() {
+			return new String[]
+                    { "Author1", "Author2", "Author3", "Author4","Author5" };
+		}
+
+		@Override
+		public boolean extractTo(String[] fieldData, BowkerProduct product) {
+			return extractContributors(fieldData, ContributorRoles.By_author, product);
+		}
+	},
+	EditionTypeCodes
+	{
+
+		@Override
+		public int getRepetitions() 
+		{
+			return 1;
+		}
+
+		@Override
+		public String[] getSubColumnNames() {
+			return new String[]
+                    { "EditionTypeCode" };
+		}
+
+		@Override
+		public boolean extractTo(String[] fieldData, BowkerProduct product) {
+			int pos = 0;
+            for (EditionTypeCode editionTypeCode : product.editionTypeCodes)
+            {
+                    fieldData[pos + 0] = editionTypeCode.editionTypeCode;
+                    if ((pos += 1) == fieldData.length)
+                            break;
+            }
+            return pos > 0;
+		}
+		
+	},
+	EditionNumbers
+	{
+
+		@Override
+		public int getRepetitions() {
+			return 1;
+		}
+
+		@Override
+		public String[] getSubColumnNames() {
+			return new String[]
+                    { "EditionNumber" };
+		}
+
+		@Override
+		public boolean extractTo(String[] fieldData, BowkerProduct product) {
+			int pos = 0;
+            for (EditionNumber editionNumber : product.editionNumber)
+            {
+                    fieldData[pos + 0] = editionNumber.editionNumber;
+                    if ((pos += 1) == fieldData.length)
+                            break;
+            }
+            return pos > 0;
+		}
+		
+	},
+	NumberOfIllustrations
+	{
+		@Override
+		public int getRepetitions() {
+			return 1;
+		}
+
+		@Override
+		public String[] getSubColumnNames() {
+			return new String[]
+                    { "NumberOfIllustrations" };
+		}
+
+		@Override
+		public boolean extractTo(String[] fieldData, BowkerProduct product) {
+			int pos = 0;
+            for (NumberOfIllustration numOfIllustrations : product.numOfIll)
+            {
+                    fieldData[pos + 0] = numOfIllustrations.numOfIllustrations;
+                    if ((pos += 1) == fieldData.length)
+                            break;
+            }
+            return pos > 0;
+		}
+	},
+	PublisherBISACSubjectCode
+	{
+
+		@Override
+		public int getRepetitions() {
+			return 3;
+		}
+
+		@Override
+		public String[] getSubColumnNames() {
+			return new String[]
+                    { "PublisherBISACSubjectCode" };
+		}
+
+		@Override
+		public boolean extractTo(String[] fieldData, BowkerProduct product) {
+			return extractSubjects(fieldData, SubjectSchemeIds.Publishers_own_category_code, product);
+		}
+		
 	};
-//	WorkIdentifiers
-//	{
-//
-//		@Override
-//		public int getRepetitions() {
-//			return 3;
-//		}
-//
-//		@Override
-//		public String[] getSubColumnNames() 
-//		{
-//			return new String[]
-//                    { "WorkIdType", "b233", "b244" };
-//		}
-//
-//		@Override
-//		public boolean extractTo(String[] fieldData, BowkerProduct product) {
-//			int pos = 0;
-//            for (WorkIdentifier workId : product.workIdentifiers)
-//            {
-//                    fieldData[pos + 0] = workId.b201.name();
-//                    fieldData[pos + 1] = workId.b233;
-//                    fieldData[pos + 2] = workId.b244;
-//                    if ((pos += 3) == fieldData.length)
-//                            break;
-//            }
-//            return pos > 0;
-//		}
-//		
-//	},
-//	EditionTypeCodes
-//	{
-//
-//		@Override
-//		public int getRepetitions() 
-//		{
-//			return 1;
-//		}
-//
-//		@Override
-//		public String[] getSubColumnNames() {
-//			return new String[]
-//                    { "EditionTypeCode" };
-//		}
-//
-//		@Override
-//		public boolean extractTo(String[] fieldData, BowkerProduct product) {
-//			int pos = 0;
-//            for (EditionTypeCode refname : product.editionTypeCodes)
-//            {
-//                    fieldData[pos + 0] = refname.editionTypeCode;
-//                    if ((pos += 1) == fieldData.length)
-//                            break;
-//            }
-//            return pos > 0;
-//		}
-//		
-//	};
-//	SeriesIdentifiers
-//	{
-//
-//		@Override
-//		public int getRepetitions() {
-//			return 3;
-//		}
-//
-//		@Override
-//		public String[] getSubColumnNames() {
-//			// TODO Auto-generated method stub
-//			return null;
-//		}
-//
-//		@Override
-//		public boolean extractTo(String[] fieldData, BowkerProduct product) {
-//			int pos = 0;
-//            for (SeriesIdentifier seriesIdentifier : product.seriesIdentifiers)
-//            {
-//                    fieldData[pos + 0] = seriesIdentifier.b233;
-//                    fieldData[pos + 0] = seriesIdentifier.b244;
-//                    fieldData[pos + 0] = seriesIdentifier.b273;
-//                    if ((pos += 1) == fieldData.length)
-//                            break;
-//            }
-//            return pos > 0;
-//		}
-//		
-//	};
+
 
 	private static boolean extractProductData(String[] fieldData, ProductIdTypes stdType, BasicProduct product)
 	{
@@ -490,6 +590,35 @@ public enum BowkerColumns implements JonixColumn<BowkerProduct>
 			return true;
 		}
 		return false;
+	}
+	
+	private static boolean extractContributors(String[] fieldData, ContributorRoles stdRole, BasicProduct product)
+	{
+		List<Contributor> contributors = product.findContributors(stdRole);
+		int pos = 0;
+		for (Contributor contributor : contributors)
+		{
+			String displayName = contributor.displayName();
+			if (displayName == null)
+				continue;
+			fieldData[pos] = displayName;
+			if (++pos == fieldData.length)
+				break;
+		}
+		return pos > 0;
+	}
+	
+	private static boolean extractSubjects(String[] fieldData, SubjectSchemeIds stdScheme, BasicProduct product)
+	{
+		List<Subject> subjects = product.findSubjects(stdScheme);
+		int pos = 0;
+		for (Subject subject : subjects)
+		{
+			fieldData[pos] = (subject.subjectCode != null) ? subject.subjectCode : subject.subjectHeadingText;
+			if (++pos == fieldData.length)
+				break;
+		}
+		return pos > 0;
 	}
 	
 

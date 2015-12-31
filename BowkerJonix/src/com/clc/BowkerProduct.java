@@ -5,7 +5,10 @@ import org.jonix.resolve.JonixResolver;
 
 import com.clc.jonix.MarketItemRecordNumbers;
 import com.clc.jonix.NotificationTypes;
+import com.clc.jonix.NumberOfIllustrations;
 import com.clc.jonix.Barcodes;
+import com.clc.jonix.EPubTypes;
+import com.clc.jonix.EditionNumbers;
 import com.clc.jonix.EditionTypeCodes;
 import com.clc.jonix.ProductFormDetails;
 import com.clc.jonix.ProductForms;
@@ -34,12 +37,17 @@ public class BowkerProduct extends BasicProduct
 	public final ProductForms productForm = new ProductForms();
 	public final ProductFormDetails productFormDetails = new ProductFormDetails();
 	public final Serieses serieses = new Serieses();
+	public final EPubTypes ePubTypes = new EPubTypes();
+	public final WorkIdentifiers workIdentifiers = new WorkIdentifiers();
+	public final EditionTypeCodes editionTypeCodes = new EditionTypeCodes();
+	public final EditionNumbers editionNumber = new EditionNumbers();
+	public final NumberOfIllustrations numOfIll = new NumberOfIllustrations();
 //	public final B221s b221 = new B221s();
 //	public final B244s b244 = new B244s();
 
 
 
 	//public final SeriesIdentifiers seriesIdentifiers = new SeriesIdentifiers();
-	//public final WorkIdentifiers workIdentifiers = new WorkIdentifiers();
-	//public final EditionTypeCodes editionTypeCodes = new EditionTypeCodes();
+
+	
 }

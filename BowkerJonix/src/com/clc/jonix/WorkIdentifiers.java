@@ -23,15 +23,15 @@ public class WorkIdentifiers extends JonixComposite<WorkIdentifiers.WorkIdentifi
 		 * 
 		 */
 		private static final long serialVersionUID = 4588149165523961576L;
-		public final WorkIdTypes b201;
-		public final String b233;
-		public final String b244;
+		public final WorkIdTypes workIdType;
+		public final String idTypeName;
+		public final String idValue;
 		
-		public WorkIdentifier (WorkIdTypes b201, String b233, String b244)
+		public WorkIdentifier (WorkIdTypes workIdType, String idTypeName, String idValue)
 		{
-			this.b201 = b201;
-			this.b233 = b233;
-			this.b244 = b244;
+			this.workIdType = workIdType;
+			this.idTypeName = idTypeName;
+			this.idValue = idValue;
 		}
     }
 
@@ -39,11 +39,11 @@ public class WorkIdentifiers extends JonixComposite<WorkIdentifiers.WorkIdentifi
 	public JonixConsumer consume(Object o, Object parent, Object grandParent, JonixResolver resolver) {
 		if (resolver.onixTypeOf(o) == ONIX.WorkIdentifier)
         {
-			String b201 = (String) JonixUtils.getProperty(o, resolver.onixPropOf(ONIX.WorkIDType), "value");
-            String b233 = (String) JonixUtils.getProperty(o, resolver.onixPropOf(ONIX.IDTypeName), "value");
-            String b244 = (String) JonixUtils.getProperty(o, resolver.onixPropOf(ONIX.IDValue), "value");
+			String workIdType = (String) JonixUtils.getProperty(o, resolver.onixPropOf(ONIX.WorkIDType), "value");
+            String idTypeName = (String) JonixUtils.getProperty(o, resolver.onixPropOf(ONIX.IDTypeName), "value");
+            String idValue = (String) JonixUtils.getProperty(o, resolver.onixPropOf(ONIX.IDValue), "value");
 
-            add(new WorkIdentifier(WorkIdTypes.fromCode(b201), b233, b244));
+            add(new WorkIdentifier(WorkIdTypes.fromCode(workIdType), idTypeName, idValue));
             return this;
 				
         }
